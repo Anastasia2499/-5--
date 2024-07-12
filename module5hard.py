@@ -4,6 +4,9 @@ class User:
         self.nickname = nickname
         self.password = hash(password)
         self.age = age
+    def __str__(self):
+        return f'{self.nickname}'
+
 
 
 class Video:
@@ -34,7 +37,7 @@ class UrTube:
         new_user = User(nickname, password, age)
         self.users.append(new_user)
         self.current_user = new_user
-        print(f'Пользователь {nickname} успешно зарегестрирован.')
+
 
     def log_out(self):
         self.current_user = None
@@ -50,18 +53,17 @@ class UrTube:
     def watch_video(self, title):
         if self.current_user == None:
             print('Войдите в аккаунт')
-            return
-        for video in self.videos:
-            if video.title == title:
-                if self.current_user.age < 18 and video.adult_mode:
-                    return ('Вам нет 18 лет, пожалуйста покиньте страницу')
-                for i in range(video.time_now, video.duration + 1):
-                    if i >= 10:
-                       break
-                    else:
-                        print(i,end = " ")
-                        time.sleep(0.1)
-                print('Конец видео')
+        elif self.current_user.age < 18:
+            print ('Вам нет 18 лет, пожалуйста покиньте страницу')
+        else:
+            for video in self.videos:
+                if video.title == title:
+                    for i in range(video.time_now, video.duration + 1):
+                            print(i,end = " ")
+                            time.sleep(0.2)
+                    print('Конец видео')
+
+
 
 
 
