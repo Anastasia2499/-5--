@@ -60,7 +60,7 @@ class UrTube:
                 if video.title == title:
                     for i in range(video.time_now, video.duration + 1):
                             print(i,end = " ")
-                            time.sleep(0.2)
+                            time.sleep(1)
                     print('Конец видео')
 
 
